@@ -3,13 +3,14 @@ import numpy as np
 from scipy.stats import skew, kurtosis,mode
 
 
-def analyze_histogram(self,data):
+def analyze_histogram(self,data,plot=False):
 
-    plt.hist(data, bins=20, color='blue', alpha=0.7)
-    plt.title('Histogram')
-    plt.xlabel('X-axis label')
-    plt.ylabel('Frequency')
-    plt.show()
+    if plot:
+        plt.hist(data, bins=20, color='blue', alpha=0.7)
+        plt.title('Histogram')
+        plt.xlabel('X-axis label')
+        plt.ylabel('Frequency')
+        plt.show()
 
     # Step 5: Analyze the Histogram
 
@@ -28,25 +29,18 @@ def analyze_histogram(self,data):
     # Modality
     kurt = kurtosis(data)
     if kurt > 3:
-        modality = 'Leptokurtic'  # Tails are fatter, peak is higher
+        modality = 'Leptokurtic Tails are fatter (more outliers at tails), peak is higher'  # Tails are fatter, peak is higher
     elif kurt < 3:
-        modality = 'Platykurtic'  # Tails are thinner, peak is lower
+        modality = 'Platykurtic = Tails are thinner (less outliers at tails), peak is lower'  # Tails are thinner, peak is lower
     else:
-        modality = 'Mesokurtic'   # Similar to normal distribution
+        modality = 'Mesokurtic = Similar to normal distribution'   # Similar to normal distribution
 
     # Outliers
     lower_bound = mean_value - 2 * std_dev
     upper_bound = mean_value + 2 * std_dev
     outliers = [x for x in data if x < lower_bound or x > upper_bound]
 
-    
-    # print(f"Mean: {mean_value:.2f}")
-    # print(f"Median: {median_value:.2f}")
-    # print(f"Mode: {mode_value:.2f}")
-    # print(f"Spread (Standard Deviation): {std_dev:.2f}")
-    # print(f"Skewness: {skewness:.2f}")
-    # print(f"Modality: {modality}")
-    # print(f"Outliers: {outliers}")
+
 
     results_dict = {
     "Mean": mean_value,"Median": median_value, "Mode":mode_value, 
@@ -56,4 +50,4 @@ def analyze_histogram(self,data):
     return results_dict
 
 #locally tested
-results = analyze_histogram(None, np.random.randn(1000))
+# results = analyze_histogram(None, np.random.randn(1000))
