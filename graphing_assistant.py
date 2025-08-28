@@ -110,8 +110,15 @@ class Graphing_Assistant:
             plt.ylabel(ylabel[idx])
             plt.title(title[idx])
 
-        for line in good_v_lines: 
-            plt.axvline(line, color='green', linestyle='dashed', linewidth=3)
+        
+        colors =   ["r",      # red
+    "c",      # cyan
+    "m",      # magenta
+    "y",      # yellow
+        ]
+
+        for idx,line in enumerate(good_v_lines): 
+            plt.axvline(line, color=colors[idx%4], linestyle='dashed', linewidth=3)
         for line in bad_v_lines: 
             plt.axvline(line, color='red', linestyle='dashed', linewidth=3)
             
